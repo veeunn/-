@@ -64,16 +64,4 @@ with st.expander("📁 수령 명단 파일 다운로드 (관리자 전용)"):
     elif pw != "":
         st.error("비밀번호가 틀렸습니다.")
 
-with st.expander("📁 수령 명단 파일 다운로드 (관리자 전용)"):
-    pw = st.text_input("비밀번호를 입력하세요", type="password")
-    
-    if pw == "0531":
-        try:
-            log_df = pd.read_csv("log.csv")
-            csv = log_df.to_csv(index=False).encode('utf-8-sig')
-            st.download_button("📥 log.csv 다운로드", csv, "log.csv", "text/csv")
-        except FileNotFoundError:
-            st.warning("아직 저장된 기록이 없습니다.")
-    elif pw != "":
-        st.error("비밀번호가 틀렸습니다.")
 
