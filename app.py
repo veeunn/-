@@ -49,3 +49,31 @@ if st.button("✅ 수령 완료 체크"):
             st.error("❌ 신청자 명단에 없습니다. 이름/학번을 다시 확인해주세요. 또는 학생회 카카오톡 채널로 문의 부탁드립니다.")
     else:
         st.warning("이름과 학번을 모두 입력해주세요.")
+
+# 관리자용 log.csv 다운로드 (비밀번호 필요)
+with st.expander("📁 수령 명단 파일 다운로드 (관리자 전용)"):
+    pw = st.text_input("비밀번호를 입력하세요", type="password")
+    
+    if pw == "0531":
+        try:
+            log_df = pd.read_csv("log.csv")
+            csv = log_df.to_csv(index=False).encode('utf-8-sig')
+            st.download_button("📥 log.csv 다운로드", csv, "log.csv", "text/csv")
+        except FileNotFoundError:
+            st.warning("아직 저장된 기록이 없습니다.")
+    elif pw != "":
+        st.error("비밀번호가 틀렸습니다.")
+
+with st.expander("📁 수령 명단 파일 다운로드 (관리자 전용)"):
+    pw = st.text_input("비밀번호를 입력하세요", type="password")
+    
+    if pw == "0531":
+        try:
+            log_df = pd.read_csv("log.csv")
+            csv = log_df.to_csv(index=False).encode('utf-8-sig')
+            st.download_button("📥 log.csv 다운로드", csv, "log.csv", "text/csv")
+        except FileNotFoundError:
+            st.warning("아직 저장된 기록이 없습니다.")
+    elif pw != "":
+        st.error("비밀번호가 틀렸습니다.")
+
