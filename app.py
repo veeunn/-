@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-# 신청자 명단 불러오기
 try:
     applied_df = pd.read_csv("applied_list.csv")
 except FileNotFoundError:
@@ -21,7 +20,6 @@ def normalize(text):
 
 if st.button("✅ 수령 완료 체크"):
     if name and student_id:
-        # 입력값 전처리 (공백 제거 + 소문자 통일)
         norm_name = normalize(name)
         norm_id = normalize(student_id)
 
@@ -50,7 +48,7 @@ if st.button("✅ 수령 완료 체크"):
     else:
         st.warning("이름과 학번을 모두 입력해주세요.")
 
-# 관리자용 log.csv 다운로드 (비밀번호 필요)
+# 관리자용 
 with st.expander("📁 수령 명단 파일 다운로드 (관리자 전용)"):
     pw = st.text_input("비밀번호를 입력하세요", type="password")
     
