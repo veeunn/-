@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
+pd.DataFrame(columns=["시간", "학번", "이름"]).to_csv("log.csv", index=False)
+
 # 신청자 명단 불러오기 (이니셜, 사이즈 포함)
 try:
     applied_df = pd.read_csv("applied_list.csv", dtype=str)
