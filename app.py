@@ -38,8 +38,8 @@ if name and student_id:
     if not matched.empty:
         row = matched.iloc[0]
         st.success(f"\U0001f4dd [{row['이름']}]님의 과잠 정보")
-        st.write(f"- ✉️ **이니셜 각인**: {row['이니셜 각인']}")
-        st.write(f"- 🌀 **과잠 사이즈**: {row['과잠 사이즈']}")
+        st.write(f"- 🪡 **이니셜 각인**: {row['이니셜 각인']}")
+        st.write(f"- 📐 **과잠 사이즈**: {row['과잠 사이즈']}")
 
         if st.button("✅ 수령 완료 체크"):
             now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
