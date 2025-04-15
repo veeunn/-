@@ -64,16 +64,21 @@ else:
     st.info("💬 문의는 카카오톡 채널 <중앙대학교 국제물류학과 학생회>로 연락바랍니다.")
 
 # 관리자용 log 다운로드
-with st.expander("📁 수령 명단 파일 다운로드 (관리자 전용)"):
+with st.expander("📁 관리자 전용 기능"):
     pw = st.text_input("비밀번호를 입력하세요", type="password")
-
+    
     if pw == "0531":
+        st.success("✅ 관리자 인증 완료!")
+
         try:
             log_df = pd.read_csv("log.csv")
             csv = log_df.to_csv(index=False).encode("utf-8-sig")
-            st.download_button("📥 log.csv 다운로드", csv, "log.csv", "text/csv")
+            st.download_button("📥 수령자 기록 다운로드 (CSV)", csv, "log.csv", "text/csv")
+            st.dataframe(log_df)
         except FileNotFoundError:
             st.warning("아직 저장된 기록이 없습니다.")
     elif pw != "":
         st.error("비밀번호가 틀렸습니다.")
+
+
 
