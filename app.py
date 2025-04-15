@@ -11,7 +11,7 @@ except FileNotFoundError:
 
 st.title("📦 과잠 무인 배부 체크 시스템")
 
-st.write("""
+st.markdown("""
 1️⃣ 본인의 **이름**과 **학번**을 입력하고
 2️⃣ 이니셜과 사이즈 정보를 확인한 뒤
 3️⃣ 과잠을 수령하고
