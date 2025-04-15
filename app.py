@@ -43,17 +43,21 @@ if name and student_id:
         st.write("**⬇️ 수령 완료 체크** 버튼 꼭! 눌러주세요.")
 
         if st.button("✅ 수령 완료 체크"):
-            now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            new_data = pd.DataFrame([[now, student_id.strip(), name.strip()]], columns=["시간", "학번", "이름"])
-
             try:
                 df = pd.read_csv("log.csv")
-                df = pd.concat([df, new_data], ignore_index=True)
+                already_received = df["학번"].astype(str).apply(normalize).isin([norm_id]).any()
             except FileNotFoundError:
-                df = new_data
+                df = pd.DataFrame(columns=["시간", "학번", "이름"])
+                already_received = False
 
-            df.to_csv("log.csv", index=False)
-            st.success("\U0001f389 수령 체크가 완료되었습니다!")
+            if already_received:
+                st.warning("⚠️ 이미 수령 완료된 학번입니다. 다시 확인해주세요.")
+            else:
+                now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                new_data = pd.DataFrame([[now, student_id.strip(), name.strip()]], columns=["시간", "학번", "이름"])
+                df = pd.concat([df, new_data], ignore_index=True)
+                df.to_csv("log.csv", index=False)
+                st.success("🎉 수령 체크가 완료되었습니다!")
     else:
         st.error("❌ 신청자 명단에 없는 이름/학번입니다. 오탈자 여부를 확인해주세요. 또는 학생회 카카오톡 채널로 문의해주세요.")
 else:
@@ -67,8 +71,9 @@ with st.expander("📁 수령 명단 파일 다운로드 (관리자 전용)"):
         try:
             log_df = pd.read_csv("log.csv")
             csv = log_df.to_csv(index=False).encode("utf-8-sig")
-            st.download_button("\U0001f4e5 log.csv 다운로드", csv, "log.csv", "text/csv")
+            st.download_button("📥 log.csv 다운로드", csv, "log.csv", "text/csv")
         except FileNotFoundError:
             st.warning("아직 저장된 기록이 없습니다.")
     elif pw != "":
         st.error("비밀번호가 틀렸습니다.")
+
