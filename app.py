@@ -12,11 +12,11 @@ except FileNotFoundError:
 st.title("📦 과잠 무인 배부 체크 시스템")
 
 st.markdown("""
-1️⃣ 본인의 **이름**과 **학번**을 입력하고
-2️⃣ 이니셜과 사이즈 정보를 확인한 뒤
-3️⃣ 과잠을 수령하고
+1️⃣ 본인의 **이름**과 **학번**을 입력하고,<br>
+2️⃣ 이니셜과 사이즈 정보를 확인한 뒤,<br>
+3️⃣ 과잠을 수령하고,<br>
 4️⃣ **✅ 수령 완료 체크** 버튼을 눌러주세요.
-""")
+""", unsafe_allow_html=True)
 
 name = st.text_input("이름")
 student_id = st.text_input("학번")
