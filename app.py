@@ -13,7 +13,7 @@ st.title("📦 과잠 무인 배부 체크 시스템")
 
 st.markdown("""
 1️⃣ 본인의 **이름**과 **학번**을 입력하고<br>
-2️⃣ 이니셜과 사이즈 정보를 확인한 후<br>
+2️⃣ 출력되는 이니셜과 사이즈 정보를 확인한 후<br>
 3️⃣ **✅ 수령 완료 체크** 버튼을 눌러주세요.
 """, unsafe_allow_html=True)
 
@@ -40,7 +40,7 @@ if name and student_id:
         st.success(f"\U0001f4dd [{row['이름']}]님의 과잠 정보")
         st.write(f"- 🪡 **이니셜 각인**: {row['이니셜 각인']}")
         st.write(f"- 📐 **과잠 사이즈**: {row['과잠 사이즈']}")
-        st.write("**✅ 수령 완료 체크** 버튼 꼭! 눌러주세요.")
+        st.write("**⬇️ 수령 완료 체크** 버튼 꼭! 눌러주세요.")
 
         if st.button("✅ 수령 완료 체크"):
             now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
