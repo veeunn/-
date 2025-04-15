@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-"""pd.DataFrame(columns=["시간", "학번", "이름"]).to_csv("log.csv", index=False)"""
+# 테스트: pd.DataFrame(columns=["시간", "학번", "이름"]).to_csv("log.csv", index=False)
 
 # 신청자 명단 불러오기 (이니셜, 사이즈 포함)
 try:
